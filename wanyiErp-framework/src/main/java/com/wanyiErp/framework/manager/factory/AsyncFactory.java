@@ -1,22 +1,16 @@
 package com.wanyiErp.framework.manager.factory;
 
 import java.util.TimerTask;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import com.wanyiErp.common.constant.Constants;
-import com.wanyiErp.common.utils.AddressUtils;
-import com.wanyiErp.common.utils.LogUtils;
-import com.wanyiErp.common.utils.ServletUtils;
-import com.wanyiErp.common.utils.ShiroUtils;
-import com.wanyiErp.common.utils.StringUtils;
+import com.wanyiErp.common.utils.*;
 import com.wanyiErp.common.utils.spring.SpringUtils;
-import com.wanyiErp.framework.shiro.session.OnlineSession;
 import com.wanyiErp.system.domain.SysLogininfor;
 import com.wanyiErp.system.domain.SysOperLog;
-import com.wanyiErp.system.domain.SysUserOnline;
 import com.wanyiErp.system.service.ISysOperLogService;
-import com.wanyiErp.system.service.ISysUserOnlineService;
 import com.wanyiErp.system.service.impl.SysLogininforServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import eu.bitwalker.useragentutils.UserAgent;
 
 /**
@@ -28,37 +22,6 @@ import eu.bitwalker.useragentutils.UserAgent;
 public class AsyncFactory
 {
     private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user");
-
-    /**
-     * 同步session到数据库
-     * 
-     * @param session 在线用户会话
-     * @return 任务task
-     */
-    public static TimerTask syncSessionToDb(final OnlineSession session)
-    {
-        return new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                SysUserOnline online = new SysUserOnline();
-                online.setSessionId(String.valueOf(session.getId()));
-                online.setDeptName(session.getDeptName());
-                online.setLoginName(session.getLoginName());
-                online.setStartTimestamp(session.getStartTimestamp());
-                online.setLastAccessTime(session.getLastAccessTime());
-                online.setExpireTime(session.getTimeout());
-                online.setIpaddr(session.getHost());
-                online.setLoginLocation(AddressUtils.getRealAddressByIP(session.getHost()));
-                online.setBrowser(session.getBrowser());
-                online.setOs(session.getOs());
-                online.setStatus(session.getStatus());
-                SpringUtils.getBean(ISysUserOnlineService.class).saveOnline(online);
-
-            }
-        };
-    }
 
     /**
      * 操作日志记录

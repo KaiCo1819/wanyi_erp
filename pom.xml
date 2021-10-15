@@ -17,6 +17,7 @@
         <java.version>1.8</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
         <shiro.version>1.8.0</shiro.version>
+        <shiro.redis.version>3.3.1</shiro.redis.version>
         <thymeleaf.extras.shiro.version>2.1.0</thymeleaf.extras.shiro.version>
         <druid.version>1.2.8</druid.version>
         <bitwalker.version>1.21</bitwalker.version>
@@ -74,13 +75,6 @@
                 <version>${shiro.version}</version>
             </dependency>
 
-            <!-- Shiro使用EhCache缓存框架 -->
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-ehcache</artifactId>
-                <version>${shiro.version}</version>
-            </dependency>
-    
             <!-- thymeleaf模板引擎和shiro框架的整合 -->
             <dependency>
                 <groupId>com.github.theborakompanioni</groupId>
@@ -107,6 +101,13 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.boot.version}</version>
+            </dependency>
+
+            <!-- shiro整合redis -->
+            <dependency>
+                <groupId>org.crazycake</groupId>
+                <artifactId>shiro-redis</artifactId>
+                <version>${shiro.redis.version}</version>
             </dependency>
 
             <!-- 获取系统信息 -->

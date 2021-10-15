@@ -3,9 +3,7 @@ package com.wanyiErp.system.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 import com.wanyiErp.common.constant.UserConstants;
 import com.wanyiErp.common.core.domain.Ztree;
 import com.wanyiErp.common.core.domain.entity.SysDictData;
@@ -17,6 +15,9 @@ import com.wanyiErp.common.utils.StringUtils;
 import com.wanyiErp.system.mapper.SysDictDataMapper;
 import com.wanyiErp.system.mapper.SysDictTypeMapper;
 import com.wanyiErp.system.service.ISysDictTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 字典 业务层处理
@@ -136,7 +137,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     /**
      * 加载字典缓存数据
      */
-    @Override
     public void loadingDictCache()
     {
         List<SysDictType> dictTypeList = dictTypeMapper.selectDictTypeAll();
@@ -150,7 +150,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     /**
      * 清空字典缓存数据
      */
-    @Override
     public void clearDictCache()
     {
         DictUtils.clearDictCache();
@@ -159,7 +158,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     /**
      * 重置字典缓存数据
      */
-    @Override
     public void resetDictCache()
     {
         clearDictCache();

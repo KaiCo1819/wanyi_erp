@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wanyiErp.crm.mapper.CuntomerMapper">
+    
+    <resultMap type="Cuntomer" id="CuntomerResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="type"    column="type"    />
+        <result property="source"    column="source"    />
+        <result property="location"    column="location"    />
+        <result property="contacts"    column="contacts"    />
+        <result property="contactsPost"    column="contacts_post"    />
+        <result property="contactsSex"    column="contacts_sex"    />
+        <result property="contactsPhone"    column="contacts_phone"    />
+        <result property="contactsEmail"    column="contacts_email"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectCuntomerVo">
+        select id, name, type, source, location, contacts, contacts_post, contacts_sex, contacts_phone, contacts_email, create_by, create_time, update_by, update_time from crm_cuntomer
+    </sql>
+
+    <select id="selectCuntomerList" parameterType="Cuntomer" resultMap="CuntomerResult">
+        <include refid="selectCuntomerVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="source != null  and source != ''"> and source = #{source}</if>
+            <if test="location != null  and location != ''"> and location = #{location}</if>
+            <if test="contacts != null  and contacts != ''"> and contacts = #{contacts}</if>
+            <if test="contactsPost != null  and contactsPost != ''"> and contacts_post = #{contactsPost}</if>
+            <if test="contactsSex != null  and contactsSex != ''"> and contacts_sex = #{contactsSex}</if>
+            <if test="contactsPhone != null  and contactsPhone != ''"> and contacts_phone = #{contactsPhone}</if>
+            <if test="contactsEmail != null  and contactsEmail != ''"> and contacts_email = #{contactsEmail}</if>
+        </where>
+    </select>
+    
+    <select id="selectCuntomerById" parameterType="Long" resultMap="CuntomerResult">
+        <include refid="selectCuntomerVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertCuntomer" parameterType="Cuntomer" useGeneratedKeys="true" keyProperty="id">
+        insert into crm_cuntomer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">name,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="source != null">source,</if>
+            <if test="location != null and location != ''">location,</if>
+            <if test="contacts != null and contacts != ''">contacts,</if>
+            <if test="contactsPost != null and contactsPost != ''">contacts_post,</if>
+            <if test="contactsSex != null and contactsSex != ''">contacts_sex,</if>
+            <if test="contactsPhone != null and contactsPhone != ''">contacts_phone,</if>
+            <if test="contactsEmail != null">contacts_email,</if>
+            <if test="createBy != null and createBy != ''">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null and updateBy != ''">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="source != null">#{source},</if>
+            <if test="location != null and location != ''">#{location},</if>
+            <if test="contacts != null and contacts != ''">#{contacts},</if>
+            <if test="contactsPost != null and contactsPost != ''">#{contactsPost},</if>
+            <if test="contactsSex != null and contactsSex != ''">#{contactsSex},</if>
+            <if test="contactsPhone != null and contactsPhone != ''">#{contactsPhone},</if>
+            <if test="contactsEmail != null">#{contactsEmail},</if>
+            <if test="createBy != null and createBy != ''">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null and updateBy != ''">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCuntomer" parameterType="Cuntomer">
+        update crm_cuntomer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="location != null and location != ''">location = #{location},</if>
+            <if test="contacts != null and contacts != ''">contacts = #{contacts},</if>
+            <if test="contactsPost != null and contactsPost != ''">contacts_post = #{contactsPost},</if>
+            <if test="contactsSex != null and contactsSex != ''">contacts_sex = #{contactsSex},</if>
+            <if test="contactsPhone != null and contactsPhone != ''">contacts_phone = #{contactsPhone},</if>
+            <if test="contactsEmail != null">contacts_email = #{contactsEmail},</if>
+            <if test="createBy != null and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCuntomerById" parameterType="Long">
+        delete from crm_cuntomer where id = #{id}
+    </delete>
+
+    <delete id="deleteCuntomerByIds" parameterType="String">
+        delete from crm_cuntomer where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

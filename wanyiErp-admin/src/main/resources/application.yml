@@ -9,14 +9,14 @@ wanyi:
   # 实例演示开关
   demoEnabled: false
   # 文件路径 示例（ Windows配置D:/wanyiErp/uploadPath，Linux配置 /home/kaico/javaproject/wanyi_erp）
-  profile: D://javaproject//wanyi_erp
+  profile: /home/kaico/soft/javaproject//wanyi_erp
   # 获取ip地址开关
   addressEnabled: false
 
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为80
-  port: 80
+  port: 8000
   servlet:
     # 应用的访问路径
     context-path: /

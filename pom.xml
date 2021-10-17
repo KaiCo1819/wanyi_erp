@@ -209,7 +209,19 @@
                 <artifactId>wanyiErp-system</artifactId>
                 <version>${wanyiErp.version}</version>
             </dependency>
+            <!-- CRM模块-->
+            <dependency>
+                <groupId>com.wanyiErp</groupId>
+                <artifactId>wanyiErp_CRM</artifactId>
+                <version>${wanyiErp.version}</version>
+            </dependency>
 
+            <!-- ERP模块-->
+            <dependency>
+                <groupId>com.wanyiErp</groupId>
+                <artifactId>wanyiErp_ERP</artifactId>
+                <version>${wanyiErp.version}</version>
+            </dependency>
             <!-- 通用工具-->
             <dependency>
                 <groupId>com.wanyiErp</groupId>
@@ -227,6 +239,8 @@
         <module>wanyiErp-quartz</module>
         <module>wanyiErp-generator</module>
         <module>wanyiErp-common</module>
+        <module>wanyiErp_CRM</module>
+        <module>wanyiErp_ERP</module>
     </modules>
     <packaging>pom</packaging>
 
